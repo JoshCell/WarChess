@@ -26,7 +26,7 @@ module.exports.ter = Ter;
 
 ////////////////////////UNIDADES INFANTERIA////////////////////////
 
-var uniInf = {num:Number, nombre:String, ataque:Number, tipoAtq:String, defensa:Number, precision:Number, PV:Number, alcance:Number, movimiento:Number, captura:Number, debilidad:String}
+var uniInf = {num:Number, nombre:String, ataque:Number, tipoAtq:String, defensa:Number, precision:Number, PV:Number, alcance:Number, movimiento:Number, captura:Number, debilidad:String, url:String}
 var uniInf_schema = new Schema(uniInf);
 var Inf = mongoose.model("UnidadesInfanteria", uniInf_schema);
 
@@ -44,12 +44,13 @@ module.exports.inf = Inf;
     - movimiento: cantidad de casillas en las que puede moverse la unidad.
     - captura: valor numérico de la capacidad de captura de la abse (provisional y por determinar).
     - debilidad: valor que coincide con un tipo de ataque (tipoAtq). Si coincide, aumentará el daño que recibe la unidad.
+    - url: dirección donde estará ubicado el sprite de esta unidad de infantería.
 */
 ///////////////////////////////////////////////////////////////////
 
 ////////////////////////UNIDADES MECANIZADAS///////////////////////
 
-var uniMec ={num:Number, nombre:String, ataque:Number, tipoAtq:String, defensa: Number, precision:Number, PV:Number, alcance:Number, movimiento:Number, debilidad:String, combustible:Number, municion:Number}
+var uniMec ={num:Number, nombre:String, ataque:Number, tipoAtq:String, defensa: Number, precision:Number, PV:Number, alcance:Number, movimiento:Number, debilidad:String, combustible:Number, municion:Number, url:String}
 var uniMec_schema = new Schema(uniMec);
 var Mec = mongoose.model("UnidadesMecanizadas");
 
@@ -68,6 +69,7 @@ module.exports.mec = Mec;
     - debilidad: valor que coincide con un tipo de ataque (tipoAtq). Si coincide, aumentará el daño que recibe la unidad.
     - combustible: Valor numérico de la gasolina que le queda. SI llega a cero, no puede moverse.
     - municion: valor numérico de la munición restante. Si llega a cero no puede atacar.
+    - url: dirección donde estará ubicado el sprite de esta unidad mecanizada.
 */
 
 ///////////////////////////////////////////////////////////////////
