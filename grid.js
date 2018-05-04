@@ -1,6 +1,6 @@
 function gridGenerator(){
     var data = new Array();
-    var xpos = 300;
+    var xpos = 1;
     var ypos = 0;
     var width = 96;
     var height = 96;
@@ -21,28 +21,35 @@ function gridGenerator(){
             xpos += width;
         }
         //reestablece la posición del eje x al saltar a la sigueinte fila.
-        xpos = 300;
+        xpos = 1;
         //incrementa la posición y por el ancho de fila.
         ypos += height;
     }
     return data;
 }
 
-var gridData = gridGenerator();
+var gridData = gridGenerator(); //función de generación de tablero/grid
 //monitorización por consola del gridData para debug
-//console.log(gridData);
+console.log(gridData);
+
+/////////////////CREAMOS EL SVG DONDE SE CREA TODO EL JUEGO/////////////
 
 var grid = d3.select("#grid")
             .append("svg")
             //.attr('xlink:href', "public/img/Cuadricula.svg")
             //.attr("viewBox", "-300,0,1500, 1500")
             .attr("width", "1500px")
-            .attr("height", "1500px");
+            .attr("height", "1500px")
+            .attr("x", "0px");
+
+///////////SE CREAN LAS FILAS DEL TABLERO//////////////////////////////
 
 var row = grid.selectAll(".row")
             .data(gridData)
             .enter().append("g")
             .attr("class", "row");
+
+//////////////////GENERACIÓN DE CASILLAS Y TERRENOS////////////////////
 
 var column = row.selectAll(".square")
 	.data(function(d) { return d; })
@@ -61,3 +68,4 @@ var column = row.selectAll(".square")
 	   if ((d.click)%3 == 1 ) { d3.select(this).attr('xlink:href',"public/img/terreno02.png"); }
 	   if ((d.click)%3 == 2 ) { d3.select(this).attr('xlink:href',"public/img/terreno03.png"); }
     });
+
