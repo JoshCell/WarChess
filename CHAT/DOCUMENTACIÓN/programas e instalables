@@ -9,5 +9,8 @@ mongoDB
 socket.io
 express
 bcrypt
-
-
+assert
+bodyParser
+ejs
+mongoose 
+bootstrap
