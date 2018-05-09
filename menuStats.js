@@ -46,7 +46,7 @@ var buttonStats = menu.selectAll(".buttonStats")
                 console.log(ButStaBol);
                 d3.select(this).attr('xlink:href',"public/img/buttonStatsRed.png")});
 
-///////////////////////////////VENTANA STATS//////////////////////////////
+///////////////////VENTANA STATS//////////////////
 var statsWindow = menu.selectAll(".statsWindow")
     .data(statsWinData)
     .enter().append("g")
@@ -61,18 +61,32 @@ var statsWindow = menu.selectAll(".statsWindow")
         .style("fill", "white")
         .style("stroke", "#222");
  //  if(ButStaBol == true){
-        rectStatsWindow.append("text")
+    var marcadorRojo = statsWindow.append("text")
             .data(statsPartida)
-            .attr("class", "stsPText")
+            .attr("class", "stsPTextRed")
             //.attr("width", "100px")
             //.attr("height", "100px")
-            //.attr("x", "5px")
-            //.attr("y", "5px")
-            .style("font-size", "10")
+            .attr("x", 25)
+            .attr("y", 100)
+            .style("font-size", "16")
             .style("fill", "red")
             //.on("mousedown", function(d){
             //d3.select(this).text("Equipo Rojo: " + "RedTeam", function(d) { return d.RedTeam;});
-            .text("Equipo Rojo: ");
+            .text("Equipo Rojo: 0");
+
+    var marcadorAzul = statsWindow.append("text")
+                .data(statsPartida)
+                .attr("class", "stsPTextBlue")
+                //.attr("width", "100px")
+                //.attr("height", "100px")
+                .attr("x", 25)
+                .attr("y", 120)
+                .style("font-size", "16")
+                .style("fill", "blue")
+                //.on("mousedown", function(d){
+                //d3.select(this).text("Equipo Rojo: " + "RedTeam", function(d) { return d.RedTeam;});
+                .text("Equipo Azul: 0");
+            
         //});
             
     //}
