@@ -70,7 +70,7 @@ function gridUnitsGenerator(player){
                 click: click,
                 img: img,
                 type: type,
-                state: false
+                state: true
             })
             //incrementa la variable x con el ancho de la casilla
             xpos += width;
@@ -149,7 +149,14 @@ var column = row.selectAll(".square")
         .attr("height", 96)
         .on('click', function(d){
             d.click++;
-            
+           if(state == true && tics>0){
+                d3.select(this).attr('xlink:href', imagen);
+                tics--;
+                if(tics<1){
+                    thisNode.attr("opacity", 0);
+                    d.state = false;
+                }
+            }
             /*if(inf1Bool==true && inf1Cont>0){
                 //console.log(unidadesRed.length);
                 d3.select(this).attr('xlink:href',"public/img/infanteria01red.png").attr("id", inf1Cont + "red");
@@ -192,7 +199,10 @@ var units = unitsMenu.selectAll(".units")
             .enter().append("g")
             .attr("class","units");
 
-            
+      var state;
+      var imagen = "";
+      var tics = 0; 
+    var thisNode;
 var imageUnits = units.append("image")
             .attr("class", "imageUnits")
             .attr("x", function(d) { return d.x; })
@@ -201,9 +211,14 @@ var imageUnits = units.append("image")
             .attr("height", function(d) { return d.height; })
             .attr('xlink:href',function(d){ return d.img; })
             .on('click', function(d){
-                d3.selectAll(".imageUnits").attr("opacity", 1);
-                d.state = true
-                d3.select(this).attr("opacity", 0.3)
+                d3.selectAll(d.state==true).attr("opacity", 1);
+                //d.state = true;
+                d3.selectAll(d.state==false).attr("opacity", 0);
+                thisNode = d3.select(this); 
+                thisNode.attr("opacity", 0.3);
+                state = d.state;
+                imagen = d.img;
+                tics = d.click;
 //                if(mec1Cont != 0){mecMenu.attr("opacity", 1)};
             });
 
