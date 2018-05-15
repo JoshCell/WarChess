@@ -1,3 +1,5 @@
+
+
 ////////////////FUNCTIONS/////////////////////////
 
 function gridGenerator(){
@@ -17,9 +19,9 @@ function gridGenerator(){
             if(n<=7){
                 img = "public/img/terreno01.png";
             }if(n==8 || n==9){
-                img = "public/img/terreno02.png";
-            }if(n==10){
                 img = "public/img/terreno03.png";
+            }if(n==10){
+                img = "public/img/terreno02.png";
             }
             data[row].push({
                 x: xpos,
@@ -41,6 +43,64 @@ function gridGenerator(){
     }
     return data;
 }
+
+function gridUnitsGenerator(player){
+    var data = new Array();
+    var cont = 0;
+    var xpos = 1;
+    var ypos = 0;
+    var width = 96;
+    var height = 96;
+    var click = 0;
+    var imgRed = ["public/img/infanteria01red.png", "public/img/infanteria02red.png", "public/img/mecanizada01red.png", "public/img/mecanizada02red.png"];
+    var imgBlue = ["public/img/infanteria01blue.png", "public/img/infanteria02blue.png", "public/img/mecanizada01blue.png", "public/img/mecanizada02blue.png"];
+    for (var row = 0; row < 2; row++){
+        data.push( new Array() );
+        //recorrido por columnas
+        for(var column = 0; column < 2; column++){
+            if(player == 1){var img = imgRed[cont]; cont++; }else{ img = imgBlue[cont]; cont++;}
+            if(row == 1){var type = "mec"; click = 2;}if(row==0){type = "inf"; click=4}
+            data[row].push({
+                x: xpos,
+                y: ypos,
+                width: width,
+                height: height,
+                idX: row,
+                idY: column,
+                click: click,
+                img: img,
+                type: type,
+                state: false
+            })
+            //incrementa la variable x con el ancho de la casilla
+            xpos += width;
+        }
+        //reestablece la posición del eje x al saltar a la sigueinte fila.
+        xpos = 1;
+        //incrementa la posición y por el ancho de fila.
+        ypos += height;
+    }
+    /*if(player == 1){
+        img = "public/img/BaseRed.png";
+    }else{
+        img = "public/img/BaseBlue.png";
+    }
+    data[2].push({
+        x: xpos,
+        y: ypos,
+        width: width,
+        height: height,
+        idX: row,
+        idY: column,
+        click: click,
+        img: img,
+        type: "base",
+        state: false
+    })*/
+    
+    return data;
+}
+
 
 
 //////////////////////////TABLERO//////////////////////
@@ -89,7 +149,8 @@ var column = row.selectAll(".square")
         .attr("height", 96)
         .on('click', function(d){
             d.click++;
-            if(inf1Bool==true && inf1Cont>0){
+            
+            /*if(inf1Bool==true && inf1Cont>0){
                 //console.log(unidadesRed.length);
                 d3.select(this).attr('xlink:href',"public/img/infanteria01red.png").attr("id", inf1Cont + "red");
                 inf1Cont--;
@@ -110,9 +171,43 @@ var column = row.selectAll(".square")
             }*/
         });
 
-//////////////////UNIDADES DRAG AND DROP/////////////////////
+//////////////////UNIDADES MENU (CLICK Y COLOCAR)/////////////////////
+var player = 1; // variable de jugador. 1 es jugador Rojo, 2 es jugador Azul
+var gridUnitsData = gridUnitsGenerator(player);
 
-var menuUnidades = d3.select("#menu")
+var menu = d3.select("#menu")
+    .append("svg")
+    .attr("width", "290px")
+    .attr("height", "1500px")
+    .attr("x", "10px")
+    .attr("y", "15px");
+
+var unitsMenu = menu.selectAll(".unitsMenu")
+            .data(gridUnitsData)
+            .enter().append("g")
+            .attr("class", "row");
+
+var units = unitsMenu.selectAll(".units")
+            .data(function(d) { return d; })
+            .enter().append("g")
+            .attr("class","units");
+
+            
+var imageUnits = units.append("image")
+            .attr("class", "imageUnits")
+            .attr("x", function(d) { return d.x; })
+            .attr("y", function(d) { return d.y; })
+            .attr("width", function(d) { return d.width; })
+            .attr("height", function(d) { return d.height; })
+            .attr('xlink:href',function(d){ return d.img; })
+            .on('click', function(d){
+                d3.selectAll(".imageUnits").attr("opacity", 1);
+                d.state = true
+                d3.select(this).attr("opacity", 0.3)
+//                if(mec1Cont != 0){mecMenu.attr("opacity", 1)};
+            });
+
+/*var menuUnidades = d3.select("#menu")
             .append("svg")
             .attr("width", "290px")
             .attr("height", "1500px")
@@ -122,7 +217,7 @@ var menuUnidades = d3.select("#menu")
         var mec1Bool;
         var inf1Cont = 4;
         var mec1Cont = 2;
-       var infMenu = menuUnidades.append("image")
+        var infMenu = menuUnidades.append("image")
             .attr("x", 1)
             .attr("y", 51)
             .attr("width", 96)
@@ -157,4 +252,4 @@ var menuUnidades = d3.select("#menu")
                 if(inf1Cont != 0){infMenu.attr("opacity", 1)};
                 
             });
-
+*/
