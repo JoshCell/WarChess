@@ -1,7 +1,8 @@
 module.exports = 
     class Infanteria{
-        constructor(num, nombre, ataque, tipoAtq, defensa, precision, PV, alcance, movimiento, captura, debilidad, url){
+        constructor(num, id, nombre, ataque, tipoAtq, defensa, precision, PV, alcance, movimiento, captura, debilidad, url){
             this.num = num;
+            this.id = id;
             this.nombre = nombre;
             this.ataque = ataque;
             this.tipoAtq = tipoAtq;
@@ -17,6 +18,10 @@ module.exports =
             
         getNum(){ //Devuelve el num de la infanteria
             return this.num;
+        }
+        
+        getId(){
+            return this.id;
         }
 
         getNombre(){ 

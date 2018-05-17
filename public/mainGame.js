@@ -61,9 +61,15 @@ var column = row.selectAll(".square")
             }
         }});
 
-//////////////////UNIDADES MENU (CLICK Y COLOCAR)/////////////////////
+//////////////////VARIABLES GENERALES/////////////////////
 var player = 1; // variable de jugador. 1 es jugador Rojo, 2 es jugador Azul
 var unitsLeft = 11;
+var state;
+var imagen = "";
+var tics = 0; 
+var thisNode;
+//////////////////////////////////////////////////////////////////
+//////////////////UNIDADES MENU (CLICK Y COLOCAR)/////////////////////
 var gridUnitsData = gridUnitsGenerator(player);
 
 var menu = d3.select("#menu")
@@ -83,10 +89,7 @@ var units = unitsMenu.selectAll(".units")
             .enter().append("g")
             .attr("class","units");
 
-      var state;
-      var imagen = "";
-      var tics = 0; 
-    var thisNode;
+
 var imageUnits = units.append("image")
             .attr("class", "imageUnits")
             .attr("x", function(d) { return d.x; })
@@ -157,7 +160,8 @@ var bloqueBotones = d3.select("#grid")
 
 ///////////////FUNCTIONS/////////////////////////
 
-function gridGenerator(){    var data = new Array();    var xpos = 1;    var ypos = 0;    var width = 96;    var height = 96;    var click = 0;    var img = "";
+function gridGenerator(){    
+    var data = new Array();    var xpos = 1;    var ypos = 0;    var width = 96;    var height = 96;    var click = 0;    var img = "";
     //recorrido por filas
     for (var row = 0; row < 8; row++){
         data.push( new Array() );

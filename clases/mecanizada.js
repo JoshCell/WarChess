@@ -1,7 +1,9 @@
+'use strict'
 module.exports = 
-    class Infanteria{
-        constructor(num, nombre, ataque, tipoAtq, defensa, precision, PV, alcance, movimiento, debilidad, combustible, municion, url){
+    class Mecanizada{
+        constructor(num, id, nombre, ataque, tipoAtq, defensa, precision, PV, alcance, movimiento, debilidad, combustible, municion, url){
             this.num = num;
+            this.id = id;
             this.nombre = nombre;
             this.ataque = ataque;
             this.tipoAtq = tipoAtq;
@@ -17,6 +19,10 @@ module.exports =
         }
         getNum(){ //Devuelve el num
             return this.num;
+        }
+        
+        getId(){
+            return this.id;
         }
 
         getNombre(){ 
