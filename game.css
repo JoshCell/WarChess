@@ -1,0 +1,17 @@
+#grid{
+    width: 1500px;
+    height: 1500px;
+    background-color: aquamarine;
+    position: relative;
+    left: 300px;
+}
+
+#menu{
+    width: 290px;
+    height: 1500px;
+    background-color: #0066ff;
+    position: absolute;
+    left:10px;
+    top:10px;
+}
+

@@ -1,8 +1,3 @@
-
-
-
-
-
 var unidades = {
     inf01 : { num: 1, nombre: "soldado", ataque:25, defensa:10, PV:100, movimiento: 3},
     inf02 : { num: 2, nombre: "antitanque", ataque:50, defensa:15, PV:120, movimiento: 2},
@@ -22,13 +17,10 @@ var svgScenario = escenario.select("#Warchess_scenario");
 
 /*
 //////////////////////////TABLERO//////////////////////
-
 var gridData = gridGenerator(); //función de generación de tablero/grid
 //monitorización por consola del gridData para debug
 console.log(gridData);
-
 /////////////////CREAMOS EL SVG DONDE SE CREA TODO EL JUEGO/////////////
-
 var grid = d3.select("#grid")
             .append("svg")
             //.attr('xlink:href', "public/img/Cuadricula.svg")
@@ -36,16 +28,12 @@ var grid = d3.select("#grid")
             .attr("width", "770px")
             .attr("height", "770px")
             .attr("x", "0px");
-
 ///////////SE CREAN LAS FILAS DEL TABLERO//////////////////////////////
-
 var row = grid.selectAll(".row")
             .data(gridData)
             .enter().append("g")
             .attr("class", "row");
-
 //////////////////GENERACIÓN DE CASILLAS Y TERRENOS////////////////////
-
 var column = row.selectAll(".square")
 	.data(function(d) { return d; })
 	.enter().append("g")
@@ -80,7 +68,6 @@ var column = row.selectAll(".square")
                 }
             }
         }});
-
 //////////////////VARIABLES GENERALES/////////////////////
 var player = 1; // variable de jugador. 1 es jugador Rojo, 2 es jugador Azul
 var unitsLeft = 11;
@@ -91,25 +78,20 @@ var thisNode;
 //////////////////////////////////////////////////////////////////
 //////////////////UNIDADES MENU (CLICK Y COLOCAR)/////////////////////
 var gridUnitsData = gridUnitsGenerator(player);
-
 var menu = d3.select("#menu")
     .append("svg")
     .attr("width", "290px")
     .attr("height", "1500px")
     .attr("x", "10px")
     .attr("y", "15px");
-
 var unitsMenu = menu.selectAll(".unitsMenu")
             .data(gridUnitsData)
             .enter().append("g")
             .attr("class", "row");
-
 var units = unitsMenu.selectAll(".units")
             .data(function(d) { return d; })
             .enter().append("g")
             .attr("class","units");
-
-
 var imageUnits = units.append("image")
             .attr("class", "imageUnits")
             .attr("x", function(d) { return d.x; })
@@ -129,7 +111,6 @@ var imageUnits = units.append("image")
                 tics = d.click;    
         });
 ///////////////////BOTÓN START GAME//////////////////////////
-
 //////////////////////////VENTANA BOTONES///////////////////////
 var buttonData = buttonGenerator();
 var ButStartBol = false;
@@ -154,7 +135,6 @@ var buttonStart = menu.selectAll(".buttonStart")
                 }
             });
 /////////////////////BOTONES DE EDICIÓN/////////////
-
 var bloqueBotones = d3.select("#grid")
     .data(gridData)
     .append("svg")
@@ -177,9 +157,7 @@ var bloqueBotones = d3.select("#grid")
                     d3.select(this).attr('xlink:href', "img/borrar.png")
                 }
     });
-
 ///////////////FUNCTIONS/////////////////////////
-
 function gridGenerator(){    
     var data = new Array();    var xpos = 1;    var ypos = 0;    var width = 96;    var height = 96;    var click = 0;    var img = "";
     //recorrido por filas
@@ -206,7 +184,6 @@ function gridGenerator(){
     }
     return data;
 }
-
 function gridUnitsGenerator(player){
     var data = new Array();     var cont = 0;    var xpos = 1;    var ypos = 100;    var width = 96;    var height = 96;    var click = 0;
     var imgRed = ["img/infanteria01red.png", "img/infanteria02red.png", "img/mecanizada01red.png", "img/mecanizada02red.png", "img/BaseRed.png"];
@@ -231,7 +208,6 @@ function gridUnitsGenerator(player){
     }
     return data;
 }
-
 function buttonGenerator(){
     var button = [{ "x": 20,"y": 20,"width": 250, "height": 50, "click": 0}]; return button;
 }

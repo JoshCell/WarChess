@@ -8,6 +8,7 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="768px"
    height="768px"
@@ -951,3 +952,4 @@
        <image id="Terr03" width="96"       height="96"       x="672"       y="672" xlink:href="img/terreno03.png" />
   </g>
 </svg>
+
